@@ -14,7 +14,7 @@ echo -e "\e[34m Kraken2 Started \e[0m"
 for a in *.fastq
 do
 #a=${z#trimmed/}
-/home/fagi/miniconda3/libexec/kraken2 --threads 32 --db /home/fagi/Pulpit/minikraken2_v1_8GB  --fastq-input $a  --report ../reportskraken/report_$a --output ../outputs/output_$a.krona
+/home/fagi/miniconda3/libexec/kraken2 --threads 32 --db /home/fagi/Pulpit/kraken_microbial  --fastq-input $a  --report ../reportskraken/report_$a --output ../outputs/output_$a.krona
 
 done
 echo -e "\e[34m Kraken2 Analysis Done \e[0m"

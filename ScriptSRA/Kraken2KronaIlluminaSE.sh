@@ -2,7 +2,7 @@ for=$(ls *.fas* | sed '1q;d')
 #rev=$(ls *.fas*| sed '2q;d')
 mkdir trimmed
 echo $for #$rev
-	java -Xms4g -Xmx4g -jar /home/fagi/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 64 -phred33 $for trimmed/"$for"_R1.fastq TRAILING:20 MINLEN:50
+	java -Xms4g -Xmx4g -jar /home/fagi/trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 64 -phred33 $for trimmed/"$for"_R1.fastq TRAILING:20 MINLEN:50
 
 mkdir reportskraken
 mkdir outputs

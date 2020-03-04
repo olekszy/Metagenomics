@@ -89,8 +89,10 @@ while IFS="," read ID forw id2 reve
 		done
 		i=$(($i-10))
 		mkdir ../AnalizaSRA
+		mkdir trash
 		cp -r */ ../AnalizaSRA
-		rm -r */
+		mv -r */ ../trash
+		rm -r trash
 		rm ../AnalizaSRA/*/*.fast*
 	else 
 		echo "proceeding to next Sample"         # inaczej kontynuuj 

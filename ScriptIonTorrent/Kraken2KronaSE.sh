@@ -3,7 +3,7 @@ echo -e "\e[34m Trimming Started \e[0m"
 
 for i in *.fastq
 do
-	java -Xms4g -Xmx4g -jar /home/fagi/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 64 -phred33 $i trimmed/Td$i TRAILING:20 MINLEN:50 
+	java -Xms4g -Xmx4g -jar /home/fagi/trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 64 -phred33 $i trimmed/Td$i TRAILING:20 MINLEN:50 
 done
 echo -e "\e[34m Trimming Done \e[0m"
 mkdir outputs 

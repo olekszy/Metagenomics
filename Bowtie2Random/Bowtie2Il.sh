@@ -5,7 +5,7 @@ for i in *R1*.fastq;
 do
     sam=$(echo "$i" | sed "s/_R1_\001\.fastq//")
 	echo "$sam"
-	java -Xms4g -Xmx4g -jar /home/fagi/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 64 -phred33 $sam*R1*.fastq $sam*R2*.fastq trimmed/"$sam"_R1.fastq /dev/null trimmed/"$sam"_R2.fastq /dev/null TRAILING:20 MINLEN:50
+	java -Xms4g -Xmx4g -jar /home/fagi/trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 64 -phred33 $sam*R1*.fastq $sam*R2*.fastq trimmed/"$sam"_R1.fastq /dev/null trimmed/"$sam"_R2.fastq /dev/null TRAILING:20 MINLEN:50
 done #cut sequences with trimmomatic
 echo -e "\e[34m Trimming Done \e[0m "
 mkdir cleanseq

@@ -5,7 +5,7 @@ for i in *.fastq;
 do
     sam=$(echo "$i" | rev |cut -d"." -f2- | rev )
 	echo "$sam"
-	java -Xms4g -Xmx4g -jar /home/fagi/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 64 -phred33 "$sam".fastq trimmed/"$sam".fastq TRAILING:20 MINLEN:50
+	java -Xms4g -Xmx4g -jar /home/fagi/trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 64 -phred33 "$sam".fastq trimmed/"$sam".fastq TRAILING:20 MINLEN:50
 done #cut sequences with trimmomatic
 echo -e "\e[34m Trimming Done \e[0m "
 mkdir samfiles

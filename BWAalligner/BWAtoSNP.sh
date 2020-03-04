@@ -4,7 +4,7 @@ for i in *.fastq;
 do
   sam=$(echo "$i" | rev |cut -d"." -f2- | rev )
 	echo "$sam"
-	java -Xms4g -Xmx4g -jar /home/fagi/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 64 -phred33 "$sam".fastq trimmed/"$sam".fastq TRAILING:20 MINLEN:50
+	java -Xms4g -Xmx4g -jar /home/fagi/trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 64 -phred33 "$sam".fastq trimmed/"$sam".fastq TRAILING:20 MINLEN:50
 done #cut sequences with trimmomatic
 echo "\e[36m Trimming Done \e[0m "
 mkdir samfiles
@@ -28,7 +28,7 @@ for x in *.fastq #Map human genome for SNPs
 do	
 	sam=$(echo "$x" | rev |cut -d"." -f2- | rev )
 	echo "\e[32m Mapping $sam to GRCh \e[0m"
-	bwa mem -t 16 /home/fagi/grch38/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna $sam.fastq > ../samfiles/$sam.sam
+	bwa mem -t 16 /home/fagi/grch38BWA/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna $sam.fastq > ../samfiles/$sam.sam
 done
 cd ../samfiles
 
@@ -82,7 +82,7 @@ for z in Duplicatesorted*.bam
 do
 	sam=$(echo "$z" | rev |cut -d"." -f2- | rev )
 	echo "\e[32m Basecalling $sam \e[0m"	
-	bcftools mpileup -Ou -f /home/fagi/grch38/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna $z | bcftools call -vmO z -o $sam.bcf #Variant calling z bcftools
+	bcftools mpileup -Ou -f /home/fagi/grch38BWA/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna $z | bcftools call -vmO z -o $sam.bcf #Variant calling z bcftools
 	
 	echo "\e[32m Filtering $sam and translating to VCF \e[0m"	
 	bcftools filter -i 'QUAL>100' $sam.bcf > ../VCFfiles/$sam.vcf #PHRED score filtering 
@@ -96,7 +96,7 @@ do
 done
 
 #Visualize
-#bcftools stats -F /home/fagi/grch38/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna -s 
+#bcftools stats -F /home/fagi/grch38BWA/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna -s 
 
 #for z in *.sam
 #do

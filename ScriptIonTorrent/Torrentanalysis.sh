@@ -15,9 +15,9 @@ for i in */
 do
 	echo "Analysis attached to $i"
 	cd $i
-	cp ../Kraken2Krona.sh ./
-	sh Kraken2Krona.sh |& tee -a Analysisreport.txt
-	rm Kraken2Krona.sh
+	cp ../Kraken2KronaSE.sh ./
+	sh Kraken2KronaSE.sh |& tee -a Analysisreport.txt
+	rm Kraken2KronaSE.sh
 	echo "removed"
 	cd ..
 done

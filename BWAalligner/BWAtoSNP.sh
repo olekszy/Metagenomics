@@ -66,7 +66,7 @@ for u in sorted*.bam
 do
 	sam=$(echo "$u" | rev |cut -d"." -f2- | rev )
 	echo "\e[32m Checking for duplicates in $sam \e[0m"	
-	java -jar /home/fagi/picard.jar MarkDuplicates I=$u O=Duplicate$sam.bam M=Duplicates$sam_metrics.txt REMOVE_DUPLICATES=true
+	java -jar /home/fagi/picard/picard/build/libs/picard.jar MarkDuplicates I=$u O=Duplicate$sam.bam M=Duplicates$sam_metrics.txt REMOVE_DUPLICATES=true
 done
 # samtools faidx / 
 #java -jar /home/fagi/picard.jar CreateSequenceDictionary R=GCA_000001405.15_GRCh38_no_alt_analysis_set.fna O=reference.dict
@@ -82,10 +82,10 @@ for z in Duplicatesorted*.bam
 do
 	sam=$(echo "$z" | rev |cut -d"." -f2- | rev )
 	echo "\e[32m Basecalling $sam \e[0m"	
-	bcftools mpileup -Ou -f /home/fagi/grch38BWA/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna $z | bcftools call -vmO z -o $sam.bcf #Variant calling z bcftools
+	/home/fagi/miniconda3/bin/bcftools mpileup -Ou -f /home/fagi/grch38BWA/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna $z | bcftools call -vmO z -o $sam.bcf #Variant calling z bcftools
 	
 	echo "\e[32m Filtering $sam and translating to VCF \e[0m"	
-	bcftools filter -i 'QUAL>100' $sam.bcf > ../VCFfiles/$sam.vcf #PHRED score filtering 
+	/home/fagi/miniconda3/bin/bcftools filter -i 'QUAL>100' $sam.bcf > ../VCFfiles/$sam.vcf #PHRED score filtering 
 done
 cd ../VCFfiles
 for z in *.vcf

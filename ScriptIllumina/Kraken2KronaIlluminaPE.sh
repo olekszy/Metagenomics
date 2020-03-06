@@ -29,7 +29,7 @@ do
     echo "$sam"
         #echo "$sam"*_R1.fastq
        	#echo "$sam"*_R2.fastq	
-	/home/fagi/kraken2/kraken2 --threads 32 --db /home/fagi/kraken_microbial  --paired $sam*R1.fastq $sam*R2.fastq  --report ../reportskraken/"sam"_report --output ../outputs/"$sam"_krona --unclassified-out ../unclassified/unclassified"$sam"#.fastq
+	/home/fagi/kraken2/kraken2 --threads 32 --db /home/fagi/kraken_microbial  --paired $sam*R1.fastq $sam*R2.fastq  --report ../reportskraken/"sam"_report --use-mpa-style --output ../outputs/"$sam"_krona --unclassified-out ../unclassified/unclassified"$sam"#.fastq
 done 
 
 echo -e "\e[34m Kraken2 Analysis Done \e[0m"

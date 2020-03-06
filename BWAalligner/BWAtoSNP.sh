@@ -28,7 +28,7 @@ for x in *.fastq #Map human genome for SNPs
 do	
 	sam=$(echo "$x" | rev |cut -d"." -f2- | rev )
 	echo "\e[32m Mapping $sam to GRCh \e[0m"
-	bwa mem -t 16 /home/fagi/grch38BWA/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna $sam.fastq > ../samfiles/$sam.sam
+	bwa mem -t 16 /home/fagi/grch38BWA/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna $sam.fastq > ../samfiles/$sam.sam
 done
 cd ../samfiles
 
@@ -82,7 +82,7 @@ for z in Duplicatesorted*.bam
 do
 	sam=$(echo "$z" | rev |cut -d"." -f2- | rev )
 	echo "\e[32m Basecalling $sam \e[0m"	
-	/home/fagi/miniconda3/bin/bcftools mpileup -Ou -f /home/fagi/grch38BWA/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna $z | bcftools call -vmO z -o $sam.bcf #Variant calling z bcftools
+	/home/fagi/miniconda3/bin/bcftools mpileup -Ou -f /home/fagi/GRCh38SNP/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna $z | /home/fagi/miniconda3/bin/bcftools call -vmO z -o $sam.bcf #Variant calling z bcftools
 	
 	echo "\e[32m Filtering $sam and translating to VCF \e[0m"	
 	/home/fagi/miniconda3/bin/bcftools filter -i 'QUAL>100' $sam.bcf > ../VCFfiles/$sam.vcf #PHRED score filtering 

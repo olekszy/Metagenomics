@@ -39,7 +39,7 @@ while IFS="," read ID forw id2 reve
 								#echo $d $s 
 								echo "Run FASTAPE protocol"
 								sh Kraken2KronaFASTAPE.sh 
-								rm Kraken2KronaFASTAPE.sh
+					#rm Kraken2KronaFASTAPE.sh
 								cd ..
 					#			echo "wychodze"
 								elif [[ $s == *".fastq" ]];then 
@@ -49,8 +49,8 @@ while IFS="," read ID forw id2 reve
 								#echo $d $s
 								echo "Run FASTQPE protocol"
 								sh Kraken2KronaIlluminaPE.sh
-								rm Kraken2KronaIlluminaPE.sh
-									rm -r  trimmed/
+		#						rm Kraken2KronaIlluminaPE.sh
+								#	rm -r  trimmed/
 								#echo "wychodze"
 								cd ..	
 								else 
@@ -64,7 +64,7 @@ while IFS="," read ID forw id2 reve
 								#echo $d $s 
 								echo "Run FASTASE protocol"
 								sh Kraken2KronaFASTASE.sh 
-								rm Kraken2KronaFASTASE.sh
+								#rm Kraken2KronaFASTASE.sh
 								cd ..
 					#			echo "wychodze"
 								elif [[ $s == *".fastq" ]];then 
@@ -74,8 +74,8 @@ while IFS="," read ID forw id2 reve
 								#echo $d $s
 								echo "Run FASTQSE protocol"
 								sh Kraken2KronaIlluminaSE.sh
-								rm Kraken2KronaIlluminaSE.sh
-									rm -r  trimmed/
+								#rm Kraken2KronaIlluminaSE.sh
+								#	rm -r  trimmed/
 								#echo "wychodze"
 								cd ..	
 								else 
@@ -92,8 +92,8 @@ while IFS="," read ID forw id2 reve
 		mkdir trash
 		cp -r */ ../AnalizaSRA
 		mv -r */ ../trash
-		rm -r trash
-		rm ../AnalizaSRA/*/*.fast*
+		#rm -r trash
+		#rm ../AnalizaSRA/*/*.fast*
 	else 
 		echo "proceeding to next Sample"         # inaczej kontynuuj 
 	fi

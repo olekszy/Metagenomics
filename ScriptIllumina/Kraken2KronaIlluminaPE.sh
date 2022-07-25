@@ -2,7 +2,7 @@ mkdir trimmed
 echo -e "\e[34m Trimming Started \e[0m"
 for i in *R1*.fastq;
 do
-	sam=$(echo "$i" | sed "s/_R1_\001\.fastq//" | sed "s/_R1_all.fq//")
+	sam=$(echo "$i" | sed "s/_R1_\001\.fastq//" | sed "s/R1.fastq//")
 	echo "$sam"	
 	java -Xms4g -Xmx4g -jar /home/fagi/trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 64 -phred33 $sam*R1* $sam*R2*.fastq trimmed/"$sam"_R1.fastq /dev/null trimmed/"$sam"_R2.fastq /dev/null TRAILING:20 MINLEN:50
 done #cut sequences with trimmomatic
@@ -29,7 +29,7 @@ do
     echo "$sam"
         #echo "$sam"*_R1.fastq
        	#echo "$sam"*_R2.fastq	
-	/home/fagi/kraken2/kraken2 --threads 32 --db /home/fagi/kraken_microbial  --paired $sam*R1.fastq $sam*R2.fastq  --report ../reportskraken/"sam"_report --use-mpa-style --output ../outputs/"$sam"_krona --unclassified-out ../unclassified/unclassified"$sam"#.fastq
+	/home/fagi/kraken2/kraken2 --threads 32 --db /home/fagi/kraken_microbial  --paired $sam*R1.fastq $sam*R2.fastq  --report ../reportskraken/"$sam"_report --use-mpa-style --output ../outputs/"$sam"_krona --unclassified-out ../unclassified/unclassified"$sam"#.fastq
 done 
 
 echo -e "\e[34m Kraken2 Analysis Done \e[0m"
